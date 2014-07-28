@@ -10,7 +10,8 @@
     <% end  %>
     <meta property="fb:app_id" content="<%= Spree::Config.facebook_app_id %>" />
   <% end %>
-
+  
+  <p>
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -22,9 +23,8 @@
   </script>
 
   <div class="fb-like" data-href="<%= spree.product_url(@product) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>"></div>
-
-  <br />
-
+  </p>
+  
   <div class="fb-send" data-href="<%= spree.product_url(@product) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"></div>
 <% end %>
 
