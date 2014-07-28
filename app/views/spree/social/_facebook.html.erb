@@ -1,6 +1,7 @@
 <% unless Spree::Config.facebook_app_id.nil? %>
   <% content_for :head do %>
     <meta property="og:title" content="<%= @product.name %>" />
+    <meta property="og:site_name" content="product" />
     <meta property="og:type" content="product" />
     <meta property="og:url" content="<%= spree.product_url(@product) %>" />
     <meta property="og:description" content="<%= @product.description %>" />
@@ -21,6 +22,10 @@
   </script>
 
   <div class="fb-like" data-href="<%= spree.product_url(@product) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>"></div>
+
+  <br />
+
+  <div class="fb-send" data-href="<%= spree.product_url(@product) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"></div>
 <% end %>
 
 
