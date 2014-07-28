@@ -24,15 +24,14 @@
     };
 
     // Load the SDK Asynchronously
-    (function(d){
-       var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement('script'); js.id = id; js.async = true;
-       js.src = "//connect.facebook.net/en_US/all.js";
-       ref.parentNode.insertBefore(js, ref);
-     }(document));
+    ((function(d, s, id) {
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) return;
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/<%= I18n.locale %>/sdk.js#xfbml=1&appId=<%= Spree::Config.facebook_app_id %>&version=v2.0";
+       fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
   </script>
-  <div class="fb-like" data-send="<%= Spree::Config.facebook_send_button %>" data-width="450" data-show-faces="<%= Spree::Config.facebook_show_faces %>"
-    data-layout="<%= Spree::Config.facebook_layout %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"
-    data-action="<%= Spree::Config.facebook_verb_to_display %>"></div>
+  <fb:like href="<%= spree.product_url(@product) %>" layout="<%= Spree::Config.facebook_layout %>" action="<%= Spree::Config.facebook_verb_to_display %>" show_faces="<%= Spree::Config.facebook_show_faces %>" share="<%= Spree::Config.facebook_share %>"></fb:like>
 <% end %>
+

@@ -14,4 +14,5 @@ Spree::AppConfiguration.class_eval do
   preference :facebook_verb_to_display, :string, :default => 'like'
   preference :facebook_color_scheme, :string, :default => 'light'
   preference :facebook_send_button, :boolean, :default => false
+  preference :facebook_share, :boolean, :default => true
 end
