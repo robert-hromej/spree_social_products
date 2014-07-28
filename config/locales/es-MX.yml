@@ -1,0 +1,9 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es_LA:
+  bookmark_or_share_this: "COMPARTE ESTO"
+  social_sharing_buttons: "Ajustes de Compartir Socialmente"
+  social_sharing_buttons_description: "Añadir botones de Compartir Socialmente en páginas de Productos"
+  social_sharing_settings_description: "Activar o desactivar el uso compartido de estas redes sociales en las páginas de productos"
+  social_sharing_settings_updated: "Configuración de uso compartido se han actualizado correctamente."
