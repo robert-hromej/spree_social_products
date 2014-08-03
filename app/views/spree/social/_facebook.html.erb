@@ -29,11 +29,16 @@
        var js, fjs = d.getElementsByTagName(s)[0];
        if (d.getElementById(id)) return;
        js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/<%= I18n.locale %>/sdk.js#xfbml=1&appId=<%= Spree::Config.facebook_app_id %>&version=v2.0";
+       js.src = "//connect.facebook.net/<%= I18n.locale %>/sdk.js#xfbml=1&appId=<%= Spree::Social::Config.facebook_app_id %>&version=v2.0";
        fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
   </script>
-  <fb:like href="<%= spree.product_url(@product) %>" layout="<%= Spree::Social::Config.facebook_layout %>" action="<%= Spree::Social::Config.facebook_verb_to_display %>" show_faces="<%= Spree::Social::Config.facebook_show_faces %>" share="<%= Spree::Social::Config.facebook_share %>"></fb:like>
+
+  <div class="fb-like" data-href="<%= spree.product_url(@product) %>" data-layout="<%= Spree::Social::Config.facebook_layout %>" data-action="<%= Spree::Social::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Social::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></div>
+  </p>
+  <% unless Spree::Social::Config.facebook_send_button.nil? %>
+    <div class="fb-send" data-href="<%= spree.product_url(@product) %>" data-colorscheme="<%= Spree::Social::Config.facebook_color_scheme %>"></div>
+  <% end %>
 <% end %>
 
 

@@ -1,7 +1,7 @@
 # Sample localization file for English. Add more files in this directory for other locales.
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
-es_LA:
+es-MX:
   bookmark_or_share_this: "COMPARTE ESTO"
   social_sharing_buttons: "Ajustes de Compartir Socialmente"
   social_sharing_buttons_description: "Añadir botones de Compartir Socialmente en páginas de Productos"
