@@ -22,10 +22,10 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-  <div class="fb-like" data-href="<%= spree.product_url(@product, host: Spree::Config.site_url) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></div>
+  <div class="fb-like" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></div>
   </p>
   <% unless Spree::Config.facebook_send_button.nil? %>
-    <div class="fb-send" data-href="<%= spree.product_url(@product, host: Spree::Config.site_url) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"></div>
+    <div class="fb-send" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"></div>
   <% end %>
 <% end %>
 
