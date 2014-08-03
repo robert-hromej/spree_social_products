@@ -3,14 +3,20 @@
     <meta property="og:title" content="<%= @product.name %>" />
     <meta property="og:site_name" content="product" />
     <meta property="og:type" content="product" />
-    <meta property="og:url" content="<%= spree.product_url(@product) %>" />
+    <meta property="og:url" content="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" />
     <meta property="og:description" content="<%= @product.description %>" />
     <% @product.images.each do |img| %>
-      <meta property="og:image" content="<%= absolute_image_url(img.attachment.url) %>" />
-    <% end %>
-    <meta property="fb:app_id" content="<%= Spree::Social::Config.preferred_facebook_app_id %>" />
+      <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:small)) %>" />
+    <% end  %>
+    <% if @product.has_variants? %>
+      <% @product.variant_images.each do |img| %>
+        <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:small))  %>" />
+      <% end  %>
+    <% end  %>
+    <meta property="fb:app_id" content="<%= Spree::Config.facebook_app_id %>" />
   <% end %>
-
+  
+  <p>
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
