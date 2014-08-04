@@ -3,7 +3,6 @@
 */
 
 #social_nav {
-  height: 80px;
   padding-top: 15px
 }
 #social_nav ul {
@@ -26,9 +25,6 @@
 .reddit img {
   padding-top: 3px;
 }
-#social_nav ul.facebook-like-button {
-  clear: both;
-}
 .tumblr-share {
   display:inline-block;
   text-indent:-9999px;
@@ -36,4 +32,14 @@
   width:81px;
   height:20px;
   background:url('https://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;
+}
+.fb_iframe_widget, .fb_iframe_widget>span, .fb_iframe_widget>span>iframe , .fb-like-box iframe{ 
+  width: 100% !important;
+}
+.fb-send {
+  clear: both;
+}
+.twitter>iframe, .pinterest>a, .tumblr>a, .gplus>div{
+  width: 85px !important;
+  height:  30px  !important;
 }
