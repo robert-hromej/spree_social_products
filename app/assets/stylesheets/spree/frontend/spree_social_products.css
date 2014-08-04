@@ -37,12 +37,3 @@
   height:20px;
   background:url('https://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;
 }
-
-.fb_iframe_widget, .fb_iframe_widget>span, .fb_iframe_widget>span>iframe , .fb-like-box iframe{ 
-  width: 90px !important;
-  height:  145px  !important;
-}
-.twitter>iframe, .pinterest>a, .tumblr>a, .gplus>div{
-  width: 85px !important;
-  height:  30px  !important;
-}
