@@ -9,7 +9,7 @@ Spree::AppConfiguration.class_eval do
   preference :reddit_button, :boolean, :default => false
 
   preference :facebook_app_id, :string
-  preference :facebook_layout, :string, :default => 'box_count'
+  preference :facebook_layout, :string, :default => 'button_count'
   preference :facebook_show_faces, :boolean, :default => true
   preference :facebook_verb_to_display, :string, :default => 'like'
   preference :facebook_color_scheme, :string, :default => 'light'
