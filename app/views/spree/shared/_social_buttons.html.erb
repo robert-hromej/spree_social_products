@@ -1,47 +1,42 @@
 <div id="social_nav">
   <h6><%= t(:bookmark_or_share_this) %></h6>
   <ul>
-    <% if Spree::Social::Config.preferred_twitter_button %>
+    <% if Spree::Config.twitter_button %>
       <li class="twitter">
-        <%= render 'spree/social/twitter' %>
+        <%= render :partial => 'spree/social/twitter' %>
       </li>
     <% end %>
-    <% if Spree::Social::Config.preferred_pinterest_button %>
+    <% if Spree::Config.pinterest_button %>
       <li class="pinterest">
-        <%= render 'spree/social/pinterest' %>
+        <%= render :partial => 'spree/social/pinterest' %>
       </li>
     <% end %>
-    <% if Spree::Social::Config.preferred_reddit_button %>
+    <% if Spree::Config.reddit_button %>
       <li class="reddit">
-        <%= render 'spree/social/reddit' %>
+        <%= render :partial => 'spree/social/reddit' %>
       </li>
     <% end %>
-    <% if Spree::Social::Config.preferred_tumblr_button %>
+    <% if Spree::Config.tumblr_button %>
       <li class="tumblr">
-        <%= render 'spree/social/tumblr' %>
+        <%= render :partial => 'spree/social/tumblr' %>
       </li>
     <% end %>
-    <% if Spree::Social::Config.preferred_delicious_button %>
+    <% if Spree::Config.delicious_button %>
       <li class="delicious">
-        <%= render 'spree/social/delicious' %>
+        <%= render :partial => 'spree/social/delicious' %>
       </li>
     <% end %>
-    <% if Spree::Social::Config.preferred_google_plus_button %>
-      <li class="google_plus">
-        <%= render 'spree/social/google_plus' %>
+    <% if Spree::Config.gplus_button %>
+      <li class="gplus">
+        <%= render :partial => 'spree/social/gplus' %>
       </li>
     <% end %>
-
-    <% if Spree::Social::Config.facebook_button %>
-      <li class="facebook">
-        <ul class="facebook-like-button">
-          <%= render :partial => 'spree/social/facebook' %>
-        </ul>
-      </li>
-    <% end %>
-
-    <% unless Spree::Social::Config.facebook_send_button.nil? %>
-      <li class="fb-send" data-href="<%= @url %>" data-colorscheme="<%= Spree::Social::Config.facebook_color_scheme %>" ></li>
-    <% end %>
-  </ul> 
+  </ul>
+  <p>
+  <% if Spree::Config.facebook_button %>
+    <ul class="facebook-like-button">
+      <%= render :partial => 'spree/social/facebook' %>
+    </ul>
+  <% end %>
+  </p>
 </div>
