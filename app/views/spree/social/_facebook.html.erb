@@ -6,17 +6,15 @@
     <meta property="og:url" content="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" />
     <meta property="og:description" content="<%= @product.description %>" />
     <% @product.images.each do |img| %>
-      <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:small)) %>" />
+      <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:large)) %>" />
     <% end  %>
     <% if @product.has_variants? %>
       <% @product.variant_images.each do |img| %>
-        <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:small))  %>" />
+        <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:large))  %>" />
       <% end  %>
     <% end  %>
     <meta property="fb:app_id" content="<%= Spree::Config.facebook_app_id %>" />
   <% end %>
-  
-  <p>
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -27,10 +25,10 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-  <div class="fb-like" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></div>
-  </p>
+  <li class="fb-like" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></li>
+  
   <% unless Spree::Config.facebook_send_button.nil? %>
-    <div class="fb-send" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"></div>
+      <li class="fb-send" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>" ></li>
   <% end %>
 <% end %>
 

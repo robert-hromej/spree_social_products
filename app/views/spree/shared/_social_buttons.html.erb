@@ -32,11 +32,11 @@
       </li>
     <% end %>
   </ul>
-  <ul class="facebook-like-button">
-    <% if Spree::Config.facebook_button %>
-      <li class="facebook">
-        <%= render :partial => 'spree/social/facebook' %>
-      </li>
-    <% end %>
-  </ul>
+  <p>
+  <% if Spree::Config.facebook_button %>
+    <ul class="facebook-like-button">
+      <%= render :partial => 'spree/social/facebook' %>
+    </ul>
+  <% end %>
+  </p>
 </div>
