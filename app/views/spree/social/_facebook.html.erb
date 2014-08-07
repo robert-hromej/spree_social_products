@@ -3,7 +3,13 @@
     <meta property="og:title" content="<%= @product.name %>" />
     <meta property="og:site_name" content="product" />
     <meta property="og:type" content="product" />
-    <meta property="og:url" content="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" />
+    <% unless Spree::Store.where(code: 'spree').first.nil?
+          @host = Spree::Store.where(code: 'spree').first.url 
+          @url = spree.product_url(@product, host: @host)
+        else
+          @url = spree.product_url(@product)
+        end %>
+    <meta property="og:url" content="<%= @url %>" />
     <meta property="og:description" content="<%= @product.description %>" />
     <% @product.images.each do |img| %>
       <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:large)) %>" />
@@ -25,12 +31,9 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
 
-  <li class="fb-like" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></li>
+  <li class="fb-like" data-href="<%= @url %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></li>
   
   <% unless Spree::Config.facebook_send_button.nil? %>
-      <li class="fb-send" data-href="<%= spree.product_url(@product, host: Spree::Store.where(code: 'spree').first.url) %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>" ></li>
+      <li class="fb-send" data-href="<%= @url %>" data-colorscheme="<%= Spree::Config.facebook_color_scheme %>" ></li>
   <% end %>
 <% end %>
-
-
-
