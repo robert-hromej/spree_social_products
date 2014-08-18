@@ -10,6 +10,7 @@
   <thead>
     <tr>
       <th><%= Spree.t(:product_name) %></th>
+      <th><%= Spree.t(:product_url) %></th>
       <th><%= Spree.t(:facebook_actions) %></th>
       <th><%= Spree.t(:facebook_shares) %></th>
       <th><%= Spree.t(:twitter_shares) %></th>
@@ -18,9 +19,10 @@
   <tbody>
     <% @products.each do |product| %>
       <tr class="align-center">
-        <% @url = product_url(product, :taxon_id => @taxon.try(:id)) 
+        <% @url = "https://emagazine.mx"+ product_path(product, :taxon_id => @taxon.try(:id)) 
               @fb = product.facebook(@url) %>
         <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+        <td><a href="<%= @url %>"><%= @url %></a></td>
         <td>
           <% unless @fb.nil? %>
           total: <%= @fb['total_count'] %><br />
