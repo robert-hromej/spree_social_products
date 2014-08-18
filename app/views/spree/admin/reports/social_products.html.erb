@@ -30,7 +30,7 @@
           <%= link_to small_image(product, :itemprop => "image"), @url, :itemprop => 'url' %>
         </div></td>
         <td ><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-        <td><%=product.facebook_shares(@url_https) + product.facebook_shares(@url) %></td>
+        <td><%=product.facebook_shares(@url) %></td>
         <td><a href="<%= @url_https %>"><%= @url_https %></a></td>
         <td>
           <% unless @fb_https.nil? %>
