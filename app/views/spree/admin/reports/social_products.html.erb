@@ -9,7 +9,6 @@
 <table class="admin-report tablesorter" data-hook="social_products" id="social_products_table" >
   <thead>
     <tr>
-      <th><%= Spree.t(:product_image) %></th>
       <th><%= Spree.t(:product_name) %></th>
       <th><%= Spree.t(:facebook_totals) %></th>
       <th><%= Spree.t(:product_url_https) %></th>
@@ -22,15 +21,12 @@
   <tbody>
     <% @products.each do |product| %>
       <tr class="align-center">
-        <% @url_https = product_url(product, :taxon_id => @taxon.try(:id))
+        <% @url_https = "https://emagazine.mx"+ product_path(product, :taxon_id => @taxon.try(:id))
               @url = @url_https.sub(/https:/, "http:")
               @fb_https = product.facebook(@url_https) 
               @fb = product.facebook(@url) %>
-        <td ><div class="product-image">
-          <%= link_to small_image(product, :itemprop => "image"), @url, :itemprop => 'url' %>
-        </div></td>
         <td ><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-        <td><%=product.facebook_shares(@url) %></td>
+        <td><%=product.facebook_shares(@url_https) + product.facebook_shares(@url) %></td>
         <td><a href="<%= @url_https %>"><%= @url_https %></a></td>
         <td>
           <% unless @fb_https.nil? %>
@@ -60,7 +56,7 @@
 <%= javascript_tag do -%>
     $(document).ready(function() 
         { 
-            $("#social_products_table").tablesorter( {sortList: [[2,1],[1,0]]} ); 
+            $("#social_products_table").tablesorter( {sortList: [[1,1],[0.0]]} ); 
         } 
     );
 <% end -%>
