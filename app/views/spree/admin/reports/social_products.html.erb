@@ -12,16 +12,32 @@
       <th><%= Spree.t(:product_name) %></th>
       <th><%= Spree.t(:product_url) %></th>
       <th><%= Spree.t(:facebook_actions) %></th>
-      <th><%= Spree.t(:facebook_shares) %></th>
+      <th><%= Spree.t(:facebook_totals) %></th>
       <th><%= Spree.t(:twitter_shares) %></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each do |product| %>
       <tr class="align-center">
-        <% @url = "https://emagazine.mx"+ product_path(product, :taxon_id => @taxon.try(:id)) 
+        <% @url_https = product_url(product, :taxon_id => @taxon.try(:id)).sub(/http:/, "https:") 
+              @url = @url_https.sub(/https:/, "http:")
+              @fb_https = product.facebook(@url_https) 
               @fb = product.facebook(@url) %>
-        <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+        <td rowspan="2"><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+        <td><a href="<%= @url_https %>"><%= @url_https %></a></td>
+        <td>
+          <% unless @fb_https.nil? %>
+          total: <%= @fb_https['total_count'] %><br />
+          likes: <%= @fb_https['like_count'] %><br />
+          shares: <%= @fb_https['share_count'] %><br />
+          clicks: <%= @fb_https['click_count'] %><br />
+          comments: <%= @fb_https['comment_count'] %>
+          <% end %>
+        </td>
+        <td rowspan="2"><%=product.facebook_shares(@url_https) + product.facebook_shares(@url) %></td>
+        <td><%=product.twitter_shares(@url_https) %></td>
+      </tr>
+      <tr class="align-center">
         <td><a href="<%= @url %>"><%= @url %></a></td>
         <td>
           <% unless @fb.nil? %>
@@ -32,7 +48,6 @@
           comments: <%= @fb['comment_count'] %>
           <% end %>
         </td>
-        <td><%=product.facebook_shares(@url) %></td>
         <td><%=product.twitter_shares(@url) %></td>
       </tr>
     <% end %>

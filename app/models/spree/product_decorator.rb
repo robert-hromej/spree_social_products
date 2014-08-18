@@ -2,7 +2,7 @@ Spree::Product.class_eval do
   def facebook_shares(url)
     data = open("http://graph.facebook.com/?ids=#{URI.escape(url)}").read
     data = JSON.parse(data)
-    unless data == []
+    unless data == [] || data[url]['shares'].nil?
       data[url]['shares']
     else
       0
