@@ -19,7 +19,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr class="align-center">
-        <% @url_https = product_url(product, :taxon_id => @taxon.try(:id)).sub(/http:/, "https:") 
+        <% @url_https = product_url(product, :taxon_id => @taxon.try(:id))
               @url = @url_https.sub(/https:/, "http:")
               @fb_https = product.facebook(@url_https) 
               @fb = product.facebook(@url) %>
