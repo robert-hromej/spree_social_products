@@ -1,4 +1,4 @@
-Spree::Core::Engine.add_routes do
+Spree::Core::Engine.routes.append do
   namespace :admin do
     resource :social, :only => [:edit, :update], :controller => "social"
     resources :reports, :only => [] do
