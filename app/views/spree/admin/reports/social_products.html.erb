@@ -10,16 +10,27 @@
   <thead>
     <tr>
       <th><%= Spree.t(:product_name) %></th>
-      <th><%= Spree.t(:facebook_likes) %></th>
+      <th><%= Spree.t(:facebook_actions) %></th>
+      <th><%= Spree.t(:facebook_shares) %></th>
       <th><%= Spree.t(:twitter_shares) %></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each do |product| %>
       <tr class="align-center">
-        <% @url = product_url(product, :taxon_id => @taxon.try(:id)) %>
+        <% @url = product_url(product, :taxon_id => @taxon.try(:id)) 
+              @fb = product.facebook(@url) %>
         <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-        <td><%=product.facebook_likes(@url) %></td>
+        <td>
+          <% unless @fb.nil? %>
+          total: <%= @fb['total_count'] %><br />
+          likes: <%= @fb['like_count'] %><br />
+          shares: <%= @fb['share_count'] %><br />
+          clicks: <%= @fb['click_count'] %><br />
+          comments: <%= @fb['comment_count'] %>
+          <% end %>
+        </td>
+        <td><%=product.facebook_shares(@url) %></td>
         <td><%=product.twitter_shares(@url) %></td>
       </tr>
     <% end %>
