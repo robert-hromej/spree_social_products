@@ -1,4 +1,3 @@
-//= require spree/backend
 /*
  * 
  * TableSorter 2.0 - Client-side table sorting with ease!

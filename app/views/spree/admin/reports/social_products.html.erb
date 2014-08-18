@@ -6,24 +6,27 @@
   <li><%= link_to_with_icon 'icon-arrow-left', Spree.t(:back_to_reports_list), spree.admin_reports_url, :class => 'button' %></li>
 <% end %>
 
-<table class="admin-report" data-hook="social_products">
+<table class="admin-report tablesorter" data-hook="social_products" id="social_products_table" >
   <thead>
     <tr>
       <th><%= Spree.t(:product_name) %></th>
-      <th><%= Spree.t(:product_url) %></th>
-      <th><%= Spree.t(:facebook_actions) %></th>
       <th><%= Spree.t(:facebook_totals) %></th>
+      <th><%= Spree.t(:product_url_https) %></th>
+      <th><%= Spree.t(:facebook_actions_https) %></th>
+      <th><%= Spree.t(:product_url_http) %></th>
+      <th><%= Spree.t(:facebook_actions_http) %></th>
       <th><%= Spree.t(:twitter_shares) %></th>
     </tr>
   </thead>
   <tbody>
     <% @products.each do |product| %>
       <tr class="align-center">
-        <% @url_https = product_url(product, :taxon_id => @taxon.try(:id))
+        <% @url_https = "https://emagazine.mx"+ product_path(product, :taxon_id => @taxon.try(:id))
               @url = @url_https.sub(/https:/, "http:")
               @fb_https = product.facebook(@url_https) 
               @fb = product.facebook(@url) %>
-        <td rowspan="2"><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+        <td ><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+        <td><%=product.facebook_shares(@url_https) + product.facebook_shares(@url) %></td>
         <td><a href="<%= @url_https %>"><%= @url_https %></a></td>
         <td>
           <% unless @fb_https.nil? %>
@@ -34,10 +37,6 @@
           comments: <%= @fb_https['comment_count'] %>
           <% end %>
         </td>
-        <td rowspan="2"><%=product.facebook_shares(@url_https) + product.facebook_shares(@url) %></td>
-        <td><%=product.twitter_shares(@url_https) %></td>
-      </tr>
-      <tr class="align-center">
         <td><a href="<%= @url %>"><%= @url %></a></td>
         <td>
           <% unless @fb.nil? %>
@@ -48,8 +47,16 @@
           comments: <%= @fb['comment_count'] %>
           <% end %>
         </td>
-        <td><%=product.twitter_shares(@url) %></td>
+        <td><%=product.twitter_shares(@url_https) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= javascript_tag do -%>
+    $(document).ready(function() 
+        { 
+            $("#social_products_table").tablesorter( {sortList: [[1,1],[0.0]]} ); 
+        } 
+    );
+<% end -%>
