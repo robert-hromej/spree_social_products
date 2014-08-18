@@ -1,0 +1,27 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:social_products) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li><%= link_to_with_icon 'icon-arrow-left', Spree.t(:back_to_reports_list), spree.admin_reports_url, :class => 'button' %></li>
+<% end %>
+
+<table class="admin-report" data-hook="social_products">
+  <thead>
+    <tr>
+      <th><%= Spree.t(:product_name) %></th>
+      <th><%= Spree.t(:facebook_likes) %></th>
+      <th><%= Spree.t(:twitter_shares) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr class="align-center">
+        <% @url = product_url(product, :taxon_id => @taxon.try(:id)) %>
+        <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
+        <td><%=product.facebook_likes(@url) %></td>
+        <td><%=product.twitter_shares(@url) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
