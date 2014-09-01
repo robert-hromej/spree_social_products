@@ -1,10 +1,10 @@
 Spree::Product.class_eval do
   def facebook_shares(url)
     count = 0
-    get_urls_for_both_protocols(url).each do url
-      data = get_counts_for_social_media_api("http://graph.facebook.com/?ids=#{URI.escape(url)}")
-      unless data == [] || data[url]['shares'].nil?
-        count += data[url]['shares']
+    get_urls_for_both_protocols(url).each do |u|
+      data = get_counts_for_social_media_api("http://graph.facebook.com/?ids=#{URI.escape(u)}")
+      unless data == [] || data[u]['shares'].nil?
+        count += data[u]['shares']
       end
     end
     count
@@ -28,9 +28,9 @@ Spree::Product.class_eval do
   private
 
   def get_urls_for_both_protocols(url)
-    urls = {}
-    urls[:http] = url.sub(/https:/, "http:")
-    urls[:https] = url.sub(/http:/, "https:")
+    urls = []
+    urls << url.sub(/https:/, "http:")
+    urls << url.sub(/http:/, "https:")
     urls
   end
 
