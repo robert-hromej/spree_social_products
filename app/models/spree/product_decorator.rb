@@ -35,6 +35,6 @@ Spree::Product.class_eval do
   end
 
   def get_counts_for_social_media_api(url_api_call)
-    JSON.parse(open(url_api_call).read)
+    JSON.parse(open(url_api_call, 'User-Agent' => 'ruby').read)
   end 
 end
