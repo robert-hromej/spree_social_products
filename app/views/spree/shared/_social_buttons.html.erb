@@ -31,12 +31,17 @@
         <%= render 'spree/social/google_plus' %>
       </li>
     <% end %>
-  </ul>
-  <ul class="facebook-like-button">
-    <% if Spree::Social::Config.preferred_facebook_button %>
+
+    <% if Spree::Social::Config.facebook_button %>
       <li class="facebook">
-        <%= render partial: 'spree/social/facebook' %>
+        <ul class="facebook-like-button">
+          <%= render :partial => 'spree/social/facebook' %>
+        </ul>
       </li>
     <% end %>
-  </ul>
+
+    <% unless Spree::Social::Config.facebook_send_button.nil? %>
+      <li class="fb-send" data-href="<%= @url %>" data-colorscheme="<%= Spree::Social::Config.facebook_color_scheme %>" ></li>
+    <% end %>
+  </ul> 
 </div>
