@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_social_products'
-  s.version     = '2.1'
+  s.version     = '2.4.1'
   s.summary     = 'Adds social network sharing to product pages'
   s.required_ruby_version = '>= 2.1'
 
@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.4.0.rc4'
+  s.add_dependency 'spree_core', '~> 2.4.1'
   
   s.add_development_dependency 'capybara', '1.0.1'
   s.add_development_dependency 'factory_girl', '~> 2.6.4'
