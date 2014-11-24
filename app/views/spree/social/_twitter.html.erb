@@ -1,2 +1,18 @@
+<% content_for :head do %>
+  <meta name="twitter:card" content="summary" />
+  <% unless Spree::Store.where(code: 'spree').first.nil?
+    @host = Spree::Store.where(code: 'spree').first.url 
+    @url = spree.product_url(@product, host: @host)
+  else
+    @url = spree.product_url(@product)
+  end %>
+  <meta name="twitter:site" content="<%= @url %>" />
+  <meta name="twitter:title" content="<%= @product.name %>" />
+  <meta name="twitter:description" content="<%= @product.description %>" />
+  <% @product.images.each do |img| %>
+    <meta property="twitter:image" content="<%= absolute_image_url(img.attachment.url(:large)) %>" />
+  <% end  %>
+  <meta name="twitter:url" content="<%= @url %>" />
+<% end %>
 <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
