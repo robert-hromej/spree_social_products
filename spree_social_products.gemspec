@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'spree_social_products'
   s.version     = '3.0.0.beta'
   s.summary     = 'Adds social network sharing to product pages'
-  s.required_ruby_version = '>= 2.1'
+  s.required_ruby_version = '>= 2.1.0'
 
   s.author    = 'John Dyer'
   s.email     = 'jdyer@spreecommerce.com'
@@ -21,4 +21,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 3.1'
   s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'pry-rails'
 end
