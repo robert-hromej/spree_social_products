@@ -1,36 +1,23 @@
 <% unless Spree::Config.facebook_app_id.nil? %>
   <% content_for :head do %>
     <meta property="og:title" content="<%= @product.name %>" />
-    <meta property="og:site_name" content="product" />
     <meta property="og:type" content="product" />
-    <% unless Spree::Store.where(code: 'spree').first.nil?
-          @host = Spree::Store.where(code: 'spree').first.url 
-          @url = spree.product_url(@product, host: @host)
-        else
-          @url = spree.product_url(@product)
-        end %>
-    <meta property="og:url" content="<%= @url %>" />
+    <meta property="og:url" content="<%= spree.product_url(@product) %>" />
     <meta property="og:description" content="<%= @product.description %>" />
     <% @product.images.each do |img| %>
-      <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:large)) %>" />
-    <% end  %>
-    <% if @product.has_variants? %>
-      <% @product.variant_images.each do |img| %>
-        <meta property="og:image" content="<%= absolute_image_url(img.attachment.url(:large))  %>" />
-      <% end  %>
+    <meta property="og:image" content="<%= absolute_image_url(img.attachment.url) %>" />
     <% end  %>
     <meta property="fb:app_id" content="<%= Spree::Config.facebook_app_id %>" />
   <% end %>
-  <div id="fb-root"></div>
-  <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/<%= I18n.locale == 'es-MX' ? 'es_MX' : 'en_US'%>/sdk.js#xfbml=1&appId=<%= Spree::Config.facebook_app_id %>&version=v2.0";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
 
-  <li class="fb-like" data-href="<%= @url %>" data-layout="<%= Spree::Config.facebook_layout %>" data-action="<%= Spree::Config.facebook_verb_to_display %>" data-show-faces="<%= Spree::Config.facebook_show_faces %>" data-share="<%= Spree::Config.facebook_share %>" ></li>
- 
+  <div id="fb-root"></div>
+
+  <div 
+    class="fb-like" 
+    data-send="<%= Spree::Config.facebook_send_button %>" 
+    data-width="450" 
+    data-show-faces="<%= Spree::Config.facebook_show_faces %>"
+    data-layout="<%= Spree::Config.facebook_layout %>"
+    data-colorscheme="<%= Spree::Config.facebook_color_scheme %>"
+    data-action="<%= Spree::Config.facebook_verb_to_display %>"></div>
 <% end %>
